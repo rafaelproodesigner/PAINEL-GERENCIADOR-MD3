@@ -1,0 +1,201 @@
+
+body {
+  background-color: #000;
+  color: #0f0;
+  font-family: Arial, sans-serif;
+  padding: 10px;
+}
+
+.topo h1 {
+  color: #00ff00;
+}
+
+button {
+  background-color: #00ffae;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+input, select {
+  padding: 5px;
+  margin-right: 5px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table, th, td {
+  border: 1px solid #0f0;
+}
+
+th, td {
+  text-align: center;
+  padding: 8px;
+}
+
+.painel-superior {
+  display: flex;
+  justify-content: space-between;
+}
+
+.painel-esquerdo,
+.painel-direito {
+  width: 48%;
+}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Painel MD3 Network</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    #painel-conquistas ul {
+      padding-left: 0;
+      list-style: none;
+    }
+
+    .conquista-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div id="futebol-fundo"></div>
+
+  <header class="topo">
+    <h1>PAINEL MD3 NETWORK</h1>
+    <p>COMUNIDADE PRO ELITE</p>
+  </header>
+
+  <div class="painel-superior">
+    <div class="painel-esquerdo">
+      <button id="addPlayerBtn">Adicionar Jogador</button>
+      <input type="text" id="filtro-nome" placeholder="Filtrar por nome" />
+      <select id="filtro-posicao">
+        <option value="">Todas as posições</option>
+        <option value="Goleiro">Goleiro</option>
+        <option value="Zagueiro">Zagueiro</option>
+        <option value="Volante">Volante</option>
+        <option value="Ala">Ala</option>
+        <option value="Meia">Meia</option>
+        <option value="Atacante">Atacante</option>
+      </select>
+    </div>
+
+    <div id="painel-conquistas" class="painel-direito" style="margin-top: 20px;">
+      <h2>
+        📊 CONQUISTAS – <span id="mesAno">JUNHO 2025</span>
+        <button id="alterar-mes-ano" style="margin-left: 10px;">🛠 Alterar</button>
+      </h2>
+      <ul>
+        <li class="conquista-item">
+          🏆 Campeão da MD3 início (<span class="data">02/06</span>)
+          <button class="btn-alterar-data">Alterar Data</button>
+        </li>
+        <li class="conquista-item">
+          🏅 Ganhadores da MD3 Marcello (<span class="data">04/06</span>)
+          <button class="btn-alterar-data">Alterar Data</button>
+        </li>
+        <li class="conquista-item">
+          🏅 Ganhadores da votação iStrawl (<span class="data">07/06</span>)
+          <button class="btn-alterar-data">Alterar Data</button>
+        </li>
+        <li class="conquista-item">
+          💪 Capitães campeões das MD3 (<span class="data">02/06</span>)
+          <button class="btn-alterar-data">Alterar Data</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="formulario-jogador" style="display: none; margin-top: 20px;">
+    <h3>Adicionar Jogador</h3>
+    <form id="form-jogador">
+      <label>Nome:</label><br />
+      <input type="text" id="nome" required /><br />
+      <label>Posição:</label><br />
+      <select id="posicao" required>
+        <option value="">Selecione</option>
+        <option value="Goleiro">Goleiro</option>
+        <option value="Zagueiro">Zagueiro</option>
+        <option value="Volante">Volante</option>
+        <option value="Ala">Ala</option>
+        <option value="Meia">Meia</option>
+        <option value="Atacante">Atacante</option>
+      </select><br />
+      <label>Troféus:</label><br />
+      <input type="number" id="trofeus" min="0" value="0" /><br />
+      <label>Medalhas:</label><br />
+      <input type="number" id="medalhas" min="0" value="0" /><br />
+      <label>Capitão:</label>
+      <input type="checkbox" id="capitao" /><br /><br />
+      <button type="submit">Adicionar</button>
+      <button type="button" id="cancelar">Cancelar</button>
+    </form>
+  </div>
+
+  <section id="painel" style="margin-top: 30px;">
+    <h2>Jogadores</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th id="ordenar-posicao" style="cursor:pointer; text-decoration: underline;">Posição ⬍</th>
+          <th>Troféus</th>
+          <th>Medalhas</th>
+          <th>Capitão</th>
+          <th>Capitão vezes</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody id="tabela-jogadores"></tbody>
+    </table>
+  </section>
+
+  <!-- Apenas o script externo é necessário -->
+  <script src="script.js"></script>
+</body>
+</html>
+#destaque-jogador {
+  background-color: #00ff00;
+  color: black;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  font-weight: bold;
+  box-shadow: 0 0 10px #00ff00;
+}
+
+#destaque-jogador span {
+  display: block;
+  margin-top: 5px;
+  font-size: 14px;
+}
+#destaque-nome {
+  font-size: 1.6em;
+  font-weight: bold;
+  color: #00ffff;
+  text-transform: uppercase;
+}
+#destaque-nome {
+  font-size: 1.6em;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  text-shadow: 0 0 5px white, 0 0 10px white, 0 0 20px white;
+}
+#destaque-nome {
+  font-size: 1.6em;
+  font-weight: bold;
+  color: white;
+  text-transform: uppercase;
+  text-shadow: 0 0 5px white, 0 0 10px white, 0 0 20px white;
+}
